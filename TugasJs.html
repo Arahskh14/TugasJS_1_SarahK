@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pegawai Sarah Khoirunnisa </title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #513737;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #af8585;
+        }
+
+        td#totalGajiFooter {
+            color: rgb(6, 0, 0);
+            font-weight: bold;
+        }
+
+        td#totalGajiFooterLabel {
+            text-align: right;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Data Pegawai</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nama Pegawai</th>
+                <th>Jabatan</th>
+                <th>Status</th>
+                <th>Gaji Pokok</th>
+                <th>Tunjangan Jabatan</th>
+                <th>BPJS</th>
+                <th>Tunjangan Keluarga</th>
+                <th>Total Gaji</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ridwan</td>
+                <td>Manager</td>
+                <td>Menikah</td>
+                <td id="gajiPokok"></td>
+                <td id="tunjanganJabatan"></td>
+                <td id="bpjs"></td>
+                <td id="tunjanganKeluarga"></td>
+                <td id="totalGajiFooter"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var pegawai = {
+            nama: "Ridwan",
+            jabatan: "Manager",
+            status: "Menikah"
+        };
+
+        var gajiPokok = {
+            Manager: 15000000,
+            "Asisten Manager": 10000000,
+            Staff: 5000000
+        };
+        
+        var jabatan = pegawai.jabatan;
+        var gajiPokokManager = gajiPokok[jabatan];
+        var tunjanganJabatan = 0.15 * gajiPokokManager;
+        var bpjs = 0.1 * gajiPokokManager;
+
+        // Hitung Tunjangan Keluarga (ternary)
+        var tunjanganKeluarga = (pegawai.status === "Menikah") ? 0.2 * gajiPokokManager : 0;
+        var totalGaji = gajiPokokManager + tunjanganJabatan + bpjs + tunjanganKeluarga;
+
+        document.getElementById("gajiPokok").textContent = gajiPokokManager.toLocaleString("id-ID");
+        document.getElementById("tunjanganJabatan").textContent = tunjanganJabatan.toLocaleString("id-ID");
+        document.getElementById("bpjs").textContent = bpjs.toLocaleString("id-ID");
+        document.getElementById("tunjanganKeluarga").textContent = tunjanganKeluarga.toLocaleString("id-ID");
+        document.getElementById("totalGajiFooter").textContent = totalGaji.toLocaleString("id-ID");
+    </script>
+</body>
+</html>
